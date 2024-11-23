@@ -25,4 +25,4 @@ jobs:
           aws-region: '${{ env.AWS_REGION }}'
       - name: Sync files to s3
         run: |
-          aws s3 sync --exclude ".git*" --exclude "LICENSE" . s3://913524922480-c3o-social
+          aws s3 sync --exclude ".git*" --exclude "LICENSE" . s3://c3o.social
