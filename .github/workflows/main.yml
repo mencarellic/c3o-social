@@ -23,5 +23,6 @@ jobs:
           role-to-assume: 'arn:aws:iam::913524922480:role/GitHubAction-AssumeRoleWithAction'
           role-session-name: GitHub_to_AWS_via_FederatedOIDC
           aws-region: '${{ env.AWS_REGION }}'
-      - name: Upload files to s3
-        run: aws s3 cp . s3://913524922480-c3o-social --recursive
+      - name: Upload files to s3 except for .github directory
+        run: |
+          aws s3 cp --recursive --exclude ".git*" . s3://913524922480-c3o-social
