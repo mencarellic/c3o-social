@@ -11,9 +11,9 @@
 }
 
 body {
-  background: linear-gradient(135deg, #B5A2E6, #A2B6E6);
-  background-size: 200% 200%;
-  animation: gradientBreathing 10s ease-in-out infinite;
+  background: linear-gradient(135deg, #D4C5F7, #0e2865);
+  background-size: 300% 300%;
+  animation: gradientBreathing 8s ease-in-out infinite;
   line-height: 1.6;
   font-weight: 400;
   -webkit-font-smoothing: antialiased;
@@ -27,19 +27,20 @@ body {
 }
 
 body.dark-mode {
-    background: linear-gradient(135deg, #6B5B95, #566894);
-    background-size: 200% 200%;
+  background: linear-gradient(135deg, #9B8BC1, #1e2638);
+  background-size: 300% 300%;
 }
 
 .container {
-    position: relative;
-    background-color: rgba(255, 255, 255, 0.95);
-    border-radius: 24px;
-    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
-    padding: 30px;
-    width: 90%;
-    max-width: 400px;
-    backdrop-filter: blur(10px);
+  position: relative;
+  background-color: rgba(255, 255, 255, 0.95);
+  border-radius: 24px;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+  padding: 30px;
+  width: 90%;
+  max-width: 400px;
+  backdrop-filter: blur(10px);
+  margin: 20px auto;
 }
 
 .theme-toggle {
@@ -134,10 +135,50 @@ footer {
 }
 
 /* Touch devices */
-@media (max-width: 768px) {
+@media screen and (max-width: 768px) {
+  body {
+      padding: 15px; /* Add padding to body */
+      min-height: calc(100vh - 30px); /* Adjust for padding */
+  }
+
+  .container {
+      width: calc(100% - 30px); /* Account for padding */
+      margin: 15px auto;
+      padding: 20px;
+      border-radius: 16px; /* Slightly smaller radius on mobile */
+  }
+
+  .profile-image {
+      width: 180px; /* Slightly smaller on mobile */
+      height: 180px;
+  }
+
+  .theme-toggle {
+      top: 15px;
+      right: 15px;
+      padding: 6px 10px;
+      font-size: 13px;
+  }
   .link, .cta-button {
-      height: 48px;
-      padding: 0 20px;
+    height: 48px;
+    padding: 0 20px;
+  }
+}
+
+/* Small mobile devices */
+@media screen and (max-width: 360px) {
+  body {
+      padding: 10px;
+  }
+
+  .container {
+      width: calc(100% - 20px);
+      padding: 15px;
+  }
+
+  .profile-image {
+      width: 150px;
+      height: 150px;
   }
 }
 
@@ -184,13 +225,14 @@ body.dark-mode .profile-image:hover {
 }
 
 @keyframes gradientBreathing {
-    0% {
-        background-position: 0% 50%;
-    }
-    50% {
-        background-position: 100% 50%;
-    }
-    100% {
-        background-position: 0% 50%;
-    }
+  0% {
+      background-position: 0% 50%;
+  }
+  50% {
+      background-position: 100% 50%;
+      background-size: 400% 400%;
+  }
+  100% {
+      background-position: 0% 50%;
+  }
 }
