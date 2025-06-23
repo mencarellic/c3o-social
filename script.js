@@ -1,6 +1,12 @@
 document.addEventListener('DOMContentLoaded', () => {
     const themeToggle = document.querySelector('.theme-toggle');
     const body = document.body;
+    
+    // Update copyright year in the footer
+    const currentYearElement = document.getElementById('current-year');
+    if (currentYearElement) {
+        currentYearElement.textContent = new Date().getFullYear();
+    }
 
     // Check if system prefers dark mode
     const prefersDark = window.matchMedia('(prefers-color-scheme: dark)');
