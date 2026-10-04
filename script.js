@@ -11,28 +11,38 @@ document.addEventListener('DOMContentLoaded', () => {
     // Check if system prefers dark mode
     const prefersDark = window.matchMedia('(prefers-color-scheme: dark)');
 
-    // Function to set theme
-    const setTheme = (theme) => {
+    // Apply a theme to the page (does NOT persist)
+    const applyTheme = (theme) => {
         body.classList.toggle('dark-mode', theme === 'dark');
+    };
+
+    // Explicit user choice: apply and persist
+    const setTheme = (theme) => {
+        applyTheme(theme);
         localStorage.setItem('theme', theme);
     };
 
-    // Initialize theme
+    // Follow the system preference
+    const applySystemTheme = () => {
+        applyTheme(prefersDark.matches ? 'dark' : 'light');
+    };
+
+    // Initialize theme: honor an explicit user choice, otherwise follow the system
     const savedTheme = localStorage.getItem('theme');
     if (savedTheme) {
-        setTheme(savedTheme);
+        applyTheme(savedTheme);
     } else {
-        setTheme(prefersDark.matches ? 'dark' : 'light');
+        applySystemTheme();
     }
 
-    // Listen for system theme changes
-    prefersDark.addEventListener('change', (e) => {
+    // Listen for system theme changes (only when the user hasn't made an explicit choice)
+    prefersDark.addEventListener('change', () => {
         if (!localStorage.getItem('theme')) {
-            setTheme(e.matches ? 'dark' : 'light');
+            applySystemTheme();
         }
     });
 
-    // Toggle theme manually
+    // Toggle theme manually (this is an explicit choice, so persist it)
     themeToggle.addEventListener('click', () => {
         const newTheme = body.classList.contains('dark-mode') ? 'light' : 'dark';
         setTheme(newTheme);
